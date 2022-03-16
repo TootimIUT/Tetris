@@ -17,9 +17,10 @@ namespace projet_tetris.model
         }
 
         public bool[,] matrixShape = new bool[4,4];
-
-        
-        
+        public int[,] I_Tetromino_90 = new int[4, 2] {{ 1,0 },   // *  
+                                                       { 1,0 },  // *
+                                                       { 1,0 },  // *
+                                                       { 1,0 }}; // *
 
     }
 }
