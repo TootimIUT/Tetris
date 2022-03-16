@@ -1,4 +1,6 @@
-﻿using System;
+﻿using projet_tetris.model;
+using projet_tetris.view_model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace projet_tetris
 {
@@ -23,6 +24,19 @@ namespace projet_tetris
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new ViewModel();
+            ViewModel tetrisContext = (ViewModel)this.DataContext;
+
+
+
+            Binding printBinding = new Binding();
+            printBinding.Source = tetrisContext;
+            printBinding.Path = new PropertyPath("Matrix");
+            printBinding.Mode = BindingMode.TwoWay;
+            printBinding.UpdateSourceTrigger = UpdateSourceTrigger.LostFocus;
+            BindingOperations.SetBinding(matrix, TextBlock.TextProperty, printBinding);
+
         }
+
     }
 }

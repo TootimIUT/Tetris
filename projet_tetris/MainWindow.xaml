@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:projet_tetris"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <StackPanel Orientation="Vertical" Margin="10">
+        <TextBlock Margin="10" Name="matrix" Text="{Binding Matrix, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+    </StackPanel>
 </Window>
