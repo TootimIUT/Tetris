@@ -1,4 +1,5 @@
-﻿using System;
+﻿using projet_tetris.view_model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,12 @@ namespace projet_tetris.view
             rect.Fill = Brushes.Green;
             Grid.SetColumn(rect, 5);
             Grid.SetRow(rect, 5);
-            tetrisG.Children.Add(rect);
+            tetrisGrid.Children.Add(rect);
+        }
+
+        private void Submit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

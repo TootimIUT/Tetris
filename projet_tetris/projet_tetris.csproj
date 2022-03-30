@@ -8,7 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="view\" />
+    <None Remove="view\background.png" />
+    <None Remove="view\tetris.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="view\background.png" />
+    <Resource Include="view\tetris.png" />
   </ItemGroup>
 
 </Project>

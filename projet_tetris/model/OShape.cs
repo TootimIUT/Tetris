@@ -14,7 +14,6 @@ namespace projet_tetris.model
             square2 = new int[] { 20, 6 };
             square3 = new int[] { 19, 5 };
             square4 = new int[] { 19, 6 };
-            color = Brushes.yellow;
 
         }
     }

@@ -6,7 +6,6 @@
         <ImageBrush ImageSource="/view/background.png"/>
     </Window.Background>
 
-
     <Grid Width="525" Margin="2,0,1,17">
         <TextBlock Height="23" HorizontalAlignment="Left" Margin="17,17,0,0" x:Name="textBlockHeading" VerticalAlignment="Top" Width="110"  FontSize="17" FontStretch="ExtraCondensed" Foreground="White"><Run Language="fr-fr" Text="S'inscrire"/><LineBreak/><Run Language="fr-fr"/></TextBlock>
         <Grid Margin="17,0,43,1" Height="264" VerticalAlignment="Bottom">

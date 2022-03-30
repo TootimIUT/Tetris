@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System
+
 
 namespace projet_tetris.model
 {
@@ -15,7 +15,6 @@ namespace projet_tetris.model
             square2 = new int[] { 20, 5 };
             square3 = new int[] { 19, 5 };
             square4 = new int[] { 19, 6 };
-            color = Brushes
 
         }
     }
