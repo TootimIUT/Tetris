@@ -1,0 +1,32 @@
+﻿<Window x:Class="projet_tetris.model.Registration"  
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
+        Title="Registration" Height="363" Width="528" Icon="/view/tetris.png" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Foreground="White" BorderBrush="Black">
+    <Window.Background>
+        <ImageBrush ImageSource="/view/background.png"/>
+    </Window.Background>
+
+
+    <Grid Width="525" Margin="2,0,1,17">
+        <TextBlock Height="23" HorizontalAlignment="Left" Margin="17,17,0,0" x:Name="textBlockHeading" VerticalAlignment="Top" Width="110"  FontSize="17" FontStretch="ExtraCondensed" Foreground="White"><Run Language="fr-fr" Text="S'inscrire"/><LineBreak/><Run Language="fr-fr"/></TextBlock>
+        <Grid Margin="17,0,43,1" Height="264" VerticalAlignment="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="252*" />
+            </Grid.RowDefinitions>
+            <TextBlock Height="20" HorizontalAlignment="Center" Margin="0,211,0,0" x:Name ="errormessage" VerticalAlignment="Top" Width="415"  OpacityMask="Crimson" Foreground="#FFE5572C" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="26,21,0,0" Name="textBlockFirstname" Text="Pseudo :" VerticalAlignment="Top" Width="110" Foreground="White" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="26,55,0,0" Name="textBlockEmailId" Text="Email :" VerticalAlignment="Top" Width="110" Foreground="White" />
+            <TextBlock Height="23" HorizontalAlignment="Left" Margin="26,87,0,0" Name="textBlockPassword" Text="Mot de passe:" VerticalAlignment="Top" Width="110" Foreground="White"  />
+            <TextBlock Height="22" HorizontalAlignment="Left" Margin="26,0,0,0" Name="textBlockConfirmPwd" Text="Confirmer mot de passe:" VerticalAlignment="Center" Width="131" Foreground="White" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,20,0,0" Name="textBoxFirstName" VerticalAlignment="Top" Width="222"/>
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="183,55,0,0" Name="textBoxEmail" VerticalAlignment="Top" Width="222" />
+            <PasswordBox Height="23" HorizontalAlignment="Left" Margin="183,87,0,0" Name="passwordBox1" VerticalAlignment="Top" Width="222" />
+            <PasswordBox Height="22" HorizontalAlignment="Left" Margin="183,0,0,0" Name="passwordBoxConfirm" VerticalAlignment="Center" Width="222" />
+            <Button Content="S'inscrire" Height="23" HorizontalAlignment="Left" Margin="304,156,0,0" Name="Submit" VerticalAlignment="Top" Width="101" Click="Submit_Click" Background="#444490" Foreground="White" />
+            <Button Content="Se connecter" Height="23" HorizontalAlignment="Center" Margin="0,156,0,0" Name="button3" VerticalAlignment="Top" Width="101" Click="Login_Click" Background="#444490" Foreground="White" />
+
+        </Grid>
+    </Grid>
+</Window>
+
+
