@@ -33,9 +33,24 @@ namespace projet_tetris.view
             tetrisGrid.Children.Add(rect);
         }
 
-        private void Submit_Click(object sender, RoutedEventArgs e)
+        private void Disconnect_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Profil_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Classement_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Restart_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
