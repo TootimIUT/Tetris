@@ -10,19 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace projet_tetris
+namespace projet_tetris.view
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logique d'interaction pour Window2.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Tetris : Window
     {
-        public MainWindow()
+        public Tetris()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }
