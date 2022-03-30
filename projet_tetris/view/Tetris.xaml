@@ -20,6 +20,10 @@
 
         <Grid x:Name="tetrisGrid" Margin="28,17,0,0" Panel.ZIndex="2" Height="400" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Black">
             <Grid.RowDefinitions>
+				<RowDefinition Height="25"/>
+				<RowDefinition Height="25"/>
+				<RowDefinition Height="25"/>
+				<RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>

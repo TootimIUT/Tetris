@@ -15,6 +15,7 @@ namespace projet_tetris.model
         public int[] square2 { get; set; }
         public int[] square3 { get; set; }
         public int[] square4 { get; set; }
+        public Brush color { get; set; };
 
     }
 }
