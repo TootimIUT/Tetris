@@ -20,10 +20,10 @@
 
         <Grid x:Name="tetrisGrid" Margin="28,17,0,0" Panel.ZIndex="2" Height="400" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Black">
             <Grid.RowDefinitions>
-				<RowDefinition Height="25"/>
-				<RowDefinition Height="25"/>
-				<RowDefinition Height="25"/>
-				<RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
@@ -59,6 +59,7 @@
         <Rectangle x:Name="back" HorizontalAlignment="Left" Height="405" Margin="26,15,0,0" VerticalAlignment="Top" Width="254" Fill="White"/>
         <TextBlock HorizontalAlignment="Left" Margin="285,15,0,0" TextWrapping="Wrap" Text="Score" VerticalAlignment="Top" Height="35" Width="166" Foreground="White" FontSize="24" FontFamily="Showcard Gothic" TextAlignment="Center" Background="#FF564A4A"/>
         <TextBlock x:Name="scoreTxt" HorizontalAlignment="Left" Margin="285,49.665,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="35" Width="166" Foreground="White" FontSize="24" FontFamily="Showcard Gothic" TextAlignment="Center" Background="#FF564A4A" Text="0"/>
+        <Button Content="Se déconnecter" Height="23" HorizontalAlignment="Left" Margin="285,397,0,0" x:Name="Submit" VerticalAlignment="Top" Width="166" Click="Submit_Click" Background="#444490" Foreground="White" />
 
     </Grid>
 </Window>

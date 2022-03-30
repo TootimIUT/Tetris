@@ -29,7 +29,11 @@ namespace projet_tetris.model
         Registration registration = new Registration();
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            if (textBoxEmail.Text.Length == 0)
+            view.Tetris tetris = new view.Tetris();
+            tetris.Show();
+            Close();
+
+            /*if (textBoxEmail.Text.Length == 0)
             {
                 errormessage.Text = "Entrer un mail.";
                 textBoxEmail.Focus();
@@ -43,31 +47,31 @@ namespace projet_tetris.model
             else
             {
                 string email = textBoxEmail.Text;
-                string password = passwordBox1.Password;
+                string password = passwordBox1.Password;*/
 
-                // Connexion BDD  
-               /* SqlConnection con = new SqlConnection(@"Data Source=USER;Initial Catalog=admin;Integrated Security=True");  
-                con.Open();
+            // Connexion BDD  
+            /* SqlConnection con = new SqlConnection(@"Data Source=USER;Initial Catalog=admin;Integrated Security=True");  
+             con.Open();
 
-                //Verification Compte existant
-                SqlCommand cmd = new SqlCommand("Select * from Registration where Email='" + email + "'  and password='" + password + "'", con);
-                cmd.CommandType = CommandType.Text;
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                adapter.SelectCommand = cmd;
-                DataSet dataSet = new DataSet();
-                adapter.Fill(dataSet);
-                if (dataSet.Tables[0].Rows.Count > 0)
-                {  
-                    MainWindow.Show();
-                    Close();
-                }
-                else
-                {
-                    errormessage.Text = "Le mail ou le mot de passe est incorrect.";
-                }
-                //Fermeture connexion BDD
-                con.Close();*/
-            }
+             //Verification Compte existant
+             SqlCommand cmd = new SqlCommand("Select * from Registration where Email='" + email + "'  and password='" + password + "'", con);
+             cmd.CommandType = CommandType.Text;
+             SqlDataAdapter adapter = new SqlDataAdapter();
+             adapter.SelectCommand = cmd;
+             DataSet dataSet = new DataSet();
+             adapter.Fill(dataSet);
+             if (dataSet.Tables[0].Rows.Count > 0)
+             {  
+                 MainWindow.Show();
+                 Close();
+             }
+             else
+             {
+                 errormessage.Text = "Le mail ou le mot de passe est incorrect.";
+             }
+             //Fermeture connexion BDD
+             con.Close();*/
+
         }
         private void Register_Click(object sender, RoutedEventArgs e)
         {
