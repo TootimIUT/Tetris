@@ -22,15 +22,15 @@ namespace projet_tetris.view
     {
         public Tetris()
         {
-            //InitializeComponent();
-            this.DataContext = new ViewModel();
+            InitializeComponent();
+            /*this.DataContext = new ViewModel();
             ViewModel tetrisContext = (ViewModel)this.DataContext;
 
             Rectangle rect = new Rectangle();
             rect.Fill = Brushes.Green;
             Grid.SetColumn(rect, 5);
             Grid.SetRow(rect, 5);
-            tetrisGrid.Children.Add(rect);
+            tetrisGrid.Children.Add(rect);*/
         }
 
         private void Disconnect_Click(object sender, RoutedEventArgs e)
