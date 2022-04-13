@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="view\Login.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="view\Registration.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="view\tetris.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="view\Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="view\Registration.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="view\Tetris.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

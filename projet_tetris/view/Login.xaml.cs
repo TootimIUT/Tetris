@@ -15,6 +15,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 
+using Oracle.ManagedDataAccess.Client;
+
 namespace projet_tetris.model
 {
     /// <summary>  
@@ -25,6 +27,28 @@ namespace projet_tetris.model
         public Login()
         {
             InitializeComponent();
+            /*using (OracleConnection oc = new OracleConnection())
+            {
+                
+                oc.ConnectionString = "User ID=USER1; Password=PASS2; Data Source=DS_TEST;";
+                oc.Open();
+
+                //string sql = "SELECT COL_NO, COL_NAME FROM EMP ORDER BY 1";
+
+                OracleDataAdapter oda = new OracleDataAdapter(sql, oc);
+                DataTable dt = new DataTable();
+                oda.Fill(dt);
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    Console.WriteLine(String.Format("{0} : {1}", dr["COL_NO"], dr["COL_NAME"]));
+                }
+
+                ////Dapperテスト
+                //oc.Query("SELECT COL_NO, COL_NAME FROM EMP ORDER BY 1")
+                //  .ToList()
+                //  .ForEach(r => Console.WriteLine(String.Format("{0} : {1}", r.COL_NO, r.COL_NAME)));
+            }*/
         }
         Registration registration = new Registration();
         private void button1_Click(object sender, RoutedEventArgs e)
