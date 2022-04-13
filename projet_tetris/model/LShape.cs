@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Media;
 
 namespace projet_tetris.model
 {
@@ -11,10 +12,12 @@ namespace projet_tetris.model
     {
         public LShape()
         {
-            square1 = new int[] { 20, 5};
-            square2 = new int[] { 19, 5 };
-            square3 = new int[] { 18, 5 };
-            square4 = new int[] { 18, 6 };
+            square1 = new int[] { 0, 5};
+            square2 = new int[] { 1, 5 };
+            square3 = new int[] { 2, 5 };
+            square4 = new int[] { 2, 6 };
+            color = Brushes.Orange;
+            isPlaced = false;
 
         }
 

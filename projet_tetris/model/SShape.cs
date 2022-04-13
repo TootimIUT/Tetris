@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Media;
 
 namespace projet_tetris.model
 {
@@ -11,11 +11,12 @@ namespace projet_tetris.model
     {
         public SShape()
         {
-            square1 = new int[] { 20, 4 };
-            square2 = new int[] { 20, 5 };
-            square3 = new int[] { 19, 5 };
-            square4 = new int[] { 19, 6 };
-
+            square1 = new int[] { 0, 4 };
+            square2 = new int[] { 0, 5 };
+            square3 = new int[] { 1, 5 };
+            square4 = new int[] { 1, 6 };
+            color = Brushes.Red;
+            isPlaced = false;
         }
     }
 }

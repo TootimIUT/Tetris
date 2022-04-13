@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace projet_tetris.model
 {
@@ -10,11 +11,12 @@ namespace projet_tetris.model
     {
         public StickShape()
         {
-            square1 = new int[] { 20, 3 };
-            square2 = new int[] { 20, 4 };
-            square3 = new int[] { 20, 5 };
-            square4 = new int[] { 20, 6 };
-
+            square1 = new int[] { 0, 3 };
+            square2 = new int[] { 0, 4 };
+            square3 = new int[] { 0, 5 };
+            square4 = new int[] { 0, 6 };
+            color = Brushes.Cyan;
+            isPlaced = false;
         }
     }
 }
