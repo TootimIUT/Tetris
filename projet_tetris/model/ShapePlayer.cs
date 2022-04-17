@@ -19,7 +19,6 @@ namespace projet_tetris.model
         public Brush color { get; set; }
         public bool isPlaced { get; set; }
 
-
     }
 
 }

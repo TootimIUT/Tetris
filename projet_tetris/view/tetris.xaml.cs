@@ -36,7 +36,7 @@ namespace projet_tetris.view
 
             int j = 0;
             List<ShapePlayer> shapes = new List<ShapePlayer>();
-            do
+            /*do
             {
                 shapes.Add(tetrisContext.shape[0]);
                 
@@ -46,10 +46,20 @@ namespace projet_tetris.view
                 System.Threading.Thread.Sleep(100);
                 j++;
 
-            } while (j < 4);
+            } while (currentShape.isPlaced == false);*/
+
+            shapes.Add(tetrisContext.shape[0]);
+
+            Random randomShape = new Random();
+            tetrisContext.shape = tetrisContext.shape.OrderBy(x => randomShape.Next()).ToArray();
+            currentShape = shapes[shapes.Count - 1];
+            System.Threading.Thread.Sleep(100);
+
+            while(currentShape.isPlaced == false)
+            {
 
 
-
+            }
             rect1 = new Rectangle();
             rect1.Fill = currentShape.color;
             Grid.SetColumn(rect1, currentShape.square1[1]);
@@ -114,37 +124,46 @@ namespace projet_tetris.view
             switch (move)
             {
                 case "left":
-                    if(currentShape.square1[coordType] - 1 > -1 && currentShape.square2[coordType] - 1 > -1 && currentShape.square3[coordType] - 1 > -1 && currentShape.square4[coordType] - 1 > -1)
+                    if (shape.square1[coordType] - 1 > -1 && shape.square2[coordType] - 1 > -1 && shape.square3[coordType] - 1 > -1 && shape.square4[coordType] - 1 > -1)
                     {
-                        currentShape.square1[coordType] = currentShape.square1[coordType] - 1;
-                        currentShape.square2[coordType] = currentShape.square2[coordType] - 1;
-                        currentShape.square3[coordType] = currentShape.square3[coordType] - 1;
-                        currentShape.square4[coordType] = currentShape.square4[coordType] - 1;
+                        shape.square1[coordType] = shape.square1[coordType] - 1;
+                        shape.square2[coordType] = shape.square2[coordType] - 1;
+                        shape.square3[coordType] = shape.square3[coordType] - 1;
+                        shape.square4[coordType] = shape.square4[coordType] - 1;
                     }
-                        break;
+                    break;
                 case "right":
-                    if (currentShape.square1[coordType] + 1 < 10 && currentShape.square2[coordType] + 1 < 10 && currentShape.square3[coordType] + 1 < 10 && currentShape.square4[coordType] + 1 < 10)
+                    if (shape.square1[coordType] + 1 < 10 && shape.square2[coordType] + 1 < 10 && shape.square3[coordType] + 1 < 10 && shape.square4[coordType] + 1 < 10)
                     {
-                        currentShape.square1[coordType] = currentShape.square1[coordType] + 1;
-                        currentShape.square2[coordType] = currentShape.square2[coordType] + 1;
-                        currentShape.square3[coordType] = currentShape.square3[coordType] + 1;
-                        currentShape.square4[coordType] = currentShape.square4[coordType] + 1;
+                        shape.square1[coordType] = shape.square1[coordType] + 1;
+                        shape.square2[coordType] = shape.square2[coordType] + 1;
+                        shape.square3[coordType] = shape.square3[coordType] + 1;
+                        shape.square4[coordType] = shape.square4[coordType] + 1;
                     }
                     break;
                 case "down":
-                    if (currentShape.square1[coordType] + 1 < 20 && currentShape.square2[coordType] + 1 < 20 && currentShape.square3[coordType] + 1 < 20 && currentShape.square4[coordType] + 1 < 20)
+                    if (shape.square1[coordType] + 1 < 20 && shape.square2[coordType] + 1 < 20 && shape.square3[coordType] + 1 < 20 && shape.square4[coordType] + 1 < 20)
                     {
-                        currentShape.square1[coordType] = currentShape.square1[coordType] + 1;
-                        currentShape.square2[coordType] = currentShape.square2[coordType] + 1;
-                        currentShape.square3[coordType] = currentShape.square3[coordType] + 1;
-                        currentShape.square4[coordType] = currentShape.square4[coordType] + 1;
+                        shape.square1[coordType] = shape.square1[coordType] + 1;
+                        shape.square2[coordType] = shape.square2[coordType] + 1;
+                        shape.square3[coordType] = shape.square3[coordType] + 1;
+                        shape.square4[coordType] = shape.square4[coordType] + 1;
                     }
                     break;
 
             }
-            
         }
+
+        public bool checkIsPlaced(ShapePlayer shape)
+        {
+            if (shape.isPlaced)
+            {
+                return true;
+            }
+            return false;
+        }
+    }
 
 
     }
-}
+
