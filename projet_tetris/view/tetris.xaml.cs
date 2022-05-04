@@ -55,11 +55,11 @@ namespace projet_tetris.view
             currentShape = shapes[shapes.Count - 1];
             System.Threading.Thread.Sleep(100);
 
-            while(currentShape.isPlaced == false)
+            /*while(currentShape.isPlaced == false)
             {
 
 
-            }
+            }*/
             rect1 = new Rectangle();
             rect1.Fill = currentShape.color;
             Grid.SetColumn(rect1, currentShape.square1[1]);
@@ -104,6 +104,10 @@ namespace projet_tetris.view
             if (e.Key == Key.Down)
             {
                 moveShape(currentShape, "down", 0);
+            }
+            if(e.Key == Key.Up)
+            {
+                moveShape(currentShape, "up", 0);
             }
 
             Grid.SetColumn(rect1, currentShape.square1[1]);
@@ -150,7 +154,9 @@ namespace projet_tetris.view
                         shape.square4[coordType] = shape.square4[coordType] + 1;
                     }
                     break;
-
+                case "up":
+                    rotateShape(shape);
+                    break;
             }
         }
 
@@ -161,6 +167,320 @@ namespace projet_tetris.view
                 return true;
             }
             return false;
+        }
+
+        public void changeShape(ShapePlayer shape)
+        {
+
+        }
+
+        public void rotateShape(ShapePlayer shape)
+        {
+            Type t = shape.GetType();
+            if (t.Equals(typeof(JShape)))
+            {
+                switch (shape.state)
+                {
+                    case 0:
+                        if(shape.square2[1] < 9)
+                        {
+                            shape.square1[0] += 1;
+                            shape.square1[1] += 1;
+                            shape.square3[0]-=1;
+                            shape.square3[1]-=1;
+                            shape.square4[0] -= 2;
+                            shape.state = 1;
+                        }
+                        break;
+
+                    case 1:
+                        if(shape.square2[0] < 19)
+                        {
+                            shape.square1[0] += 1;
+                            shape.square1[1] -= 1;
+                            shape.square3[0] -= 1;
+                            shape.square3[1] += 1;
+                            shape.square4[1] += 2; 
+                            shape.state = 2;
+                        }
+                        break;
+
+                    case 2:
+                        if(shape.square2[1] > 0)
+                        {
+                            shape.square1[0] -= 1;
+                            shape.square1[1] -= 1;
+                            shape.square3[0] += 1;
+                            shape.square3[1] += 1;
+                            shape.square4[0] += 2;
+                            shape.state = 3;
+                        }
+                        break;
+                    case 3:
+                       
+                            shape.square1[0] -= 1;
+                            shape.square1[1] += 1;
+                            shape.square3[0] += 1;
+                            shape.square3[1] -= 1;
+                            shape.square4[1] -= 2;
+                            shape.state = 0;
+
+                        break;
+
+
+                }
+            }
+            if (t.Equals(typeof(LShape)))
+            {
+                switch (shape.state)
+                {
+                    case 0:
+                        if (shape.square2[1] > 0 && shape.square1[0] < 20 && shape.square1[1] < 10)
+                        {
+                            shape.square1[0] += 1;
+                            shape.square1[1] -= 1;
+
+                            shape.square3[0] -= 1;
+                            shape.square3[1] += 1;
+
+                            shape.square4[0] -= 2;
+                            shape.state = 1;
+                        }
+                        break;
+
+                    case 1:
+                        if (shape.square2[0] < 19)
+                        {
+                            shape.square1[0] += 1;
+                            shape.square1[1] += 1;
+                        
+                            shape.square3[0] -= 1;
+                            shape.square3[1] -= 1;
+                        
+                            shape.square4[1] -= 2;
+                            shape.state = 2;
+                        }
+                        
+                        break;
+
+                    case 2:
+                        if (shape.square2[1] < 9)
+                        {
+                            shape.square1[0] -= 1;
+                            shape.square1[1] += 1;
+                        
+                        
+                            shape.square3[0] += 1;
+                            shape.square3[1] -= 1;
+                        
+                            shape.square4[0] += 2;
+                            shape.state = 3;
+                        
+                        }
+                        break;
+                    case 3:
+                        if (shape.square2[0] > 0)
+                        {
+                            shape.square1[0] -= 1;
+                            shape.square1[1] -= 1;
+                        
+                            shape.square3[0] += 1;
+                            shape.square3[1] += 1;
+                        
+                            shape.square4[1] += 2;
+                            shape.state = 0;
+                        }
+                        break;
+
+
+                }
+            }
+            if (t.Equals(typeof(SShape)))
+            {
+                switch (shape.state)
+                {
+                    case 0:
+                        if(shape.square1[0] > 0)
+                        {
+                        shape.square1[0] -=1;
+                        shape.square1[1] +=1;
+
+                        shape.square3[0] -= 1;  
+                        shape.square3[1] -=1;
+
+                        shape.square4[1] -=2;
+
+                        shape.state = 1;
+
+                        }
+
+
+                        break;
+
+                    case 1:
+                        if(shape.square4[1] < 8)
+                        {
+                        shape.square1[0] +=1;
+                        shape.square1[1] -=1;
+
+                        shape.square3[0] += 1;
+                        shape.square3[1] += 1;
+
+                        shape.square4[1] += 2;
+
+                        shape.state = 0;
+                        }
+                    break;
+
+                }
+
+            }
+            if (t.Equals(typeof(ZShape)))
+            {
+                switch (shape.state)
+                {
+                    case 0:
+                        if (shape.square1[0] > 0)
+                        {
+                            shape.square1[0] -= 1;
+                            shape.square1[1] -= 1;
+
+                            shape.square3[0] -= 1;
+                            shape.square3[1] += 1;
+
+                            shape.square4[1] += 2;
+                            shape.state = 1;
+                        }
+
+
+                        break;
+
+                    case 1:
+                        
+                        if(shape.square2[1] > 0)
+                        {
+                            shape.square1[0] += 1;
+                            shape.square1[1] += 1;
+
+                            shape.square3[0] += 1;
+                            shape.square3[1] -= 1;
+
+                            shape.square4[1] -= 2;
+
+                            shape.state = 0;
+                        }
+                        
+                        break;
+
+                }
+
+            }
+
+            if (t.Equals(typeof(StickShape)))
+            {
+                switch (shape.state)
+                {
+                    case 0:
+                        if(shape.square1[0] > 0 && shape.square4[0] < 18)
+                        {
+                            shape.square1[0] -= 1;
+                            shape.square1[1] += 1;
+
+                            shape.square3[0] += 1;
+                            shape.square3[1] -= 1;
+
+                            shape.square4[0] +=2;
+                            shape.square4[1] -=2;
+
+                            shape.state = 1;
+                        }
+                        break;
+
+                    case 1:
+                        if(shape.square1[1] > 0 && shape.square4[1] < 8)
+                        {
+                            shape.square1[0] += 1;
+                            shape.square1[1] -= 1;
+
+                            shape.square3[0] -= 1;
+                            shape.square3[1] += 1;
+
+                            shape.square4[0] -= 2;
+                            shape.square4[1] += 2;
+
+                            shape.state = 0;
+                        }
+                        break;
+                }
+            }
+            if (t.Equals(typeof(TShape)))
+            {
+                switch (shape.state)
+                {
+                    case 0:
+                        if(shape.square2[0] > 0)
+                        {
+                            shape.square1[0] -= 1;
+                            shape.square1[1] += 1;
+
+                            shape.square3[0] += 1;
+                            shape.square3[1] -= 1;
+
+                            shape.square4[0] -= 1;
+                            shape.square4[1] -= 1;
+
+                            shape.state = 1;
+                        }
+                        break;
+
+                    case 1:
+                        if (shape.square2[1] < 9)
+                        {
+                            shape.square1[0] += 1;
+                            shape.square1[1] += 1;
+
+                            shape.square3[0] -= 1;
+                            shape.square3[1] -= 1;
+
+                            shape.square4[0] -= 1;
+                            shape.square4[1] += 1;
+
+                            shape.state = 2;
+                        }
+                        break;
+
+                    case 2:
+                        if (shape.square2[0] < 19 )
+                        { 
+                            shape.square1[0] += 1;
+                            shape.square1[1] -= 1;
+
+                            shape.square3[0] -= 1;
+                            shape.square3[1] += 1;
+
+                            shape.square4[0] += 1;
+                            shape.square4[1] += 1;
+
+                            shape.state = 3;
+                        }
+                            break;
+                    case 3:
+                        if (shape.square2[1] > 0)
+                        {
+                            shape.square1[0] -= 1;
+                            shape.square1[1] -= 1;
+
+                            shape.square3[0] += 1;
+                            shape.square3[1] += 1;
+
+                            shape.square4[0] += 1;
+                            shape.square4[1] -= 1;
+
+                            shape.state = 0;
+                        }
+                        break;
+                }
+            }
         }
     }
 

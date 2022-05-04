@@ -17,6 +17,7 @@ namespace projet_tetris.model
             square4 = new int[] { 2, 4 };
             color = Brushes.Blue;
             isPlaced = false;
+            state = 0;
 
         }
     }

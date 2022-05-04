@@ -16,9 +16,11 @@ namespace projet_tetris.view_model
 
         public ViewModel()
         {
-            shape = new ShapePlayer[] { new JShape(), new LShape(), new OShape(), new SShape(), new StickShape(), new TShape(), new ZShape() };
+            shape = new ShapePlayer[] { new JShape(), new ZShape(), new LShape(),new TShape(), new StickShape(),  new SShape(), new OShape() };
 
         }
+
+
 
 
     }
