@@ -486,6 +486,7 @@ namespace projet_tetris.view
 
         public  void autoFalling()
         {
+            Timer t = new Timer();
             moveShape(currentShape, "down", 0);
         }
 
