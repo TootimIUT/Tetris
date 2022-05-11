@@ -33,7 +33,7 @@ namespace projet_tetris.model
             tetris.Show();
             Close();
 
-            /*if (textBoxEmail.Text.Length == 0)
+            if (textBoxEmail.Text.Length == 0)
             {
                 errormessage.Text = "Entrer un mail.";
                 textBoxEmail.Focus();
@@ -46,15 +46,11 @@ namespace projet_tetris.model
             }
             else
             {
-                string email = textBoxEmail.Text;
-                string password = passwordBox1.Password;*/
-
-            // Connexion BDD  
-            /* SqlConnection con = new SqlConnection(@"Data Source=USER;Initial Catalog=admin;Integrated Security=True");  
-             con.Open();
-
-             //Verification Compte existant
-             SqlCommand cmd = new SqlCommand("Select * from Registration where Email='" + email + "'  and password='" + password + "'", con);
+             
+                // Do work here; connection closed on following line.
+            }
+                //Verification Compte existant
+             /*   SqlCommand cmd = new SqlCommand("Select * from Registration where Email='" + email + "'  and password='" + password + "'", con);
              cmd.CommandType = CommandType.Text;
              SqlDataAdapter adapter = new SqlDataAdapter();
              adapter.SelectCommand = cmd;

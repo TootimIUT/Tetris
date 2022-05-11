@@ -85,7 +85,7 @@ namespace projet_tetris.view
 
         }
 
-        private void Submit_Click(object sender, RoutedEventArgs e)
+        private void Disconnect_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
