@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace projet_tetris.view
 {
@@ -27,6 +28,7 @@ namespace projet_tetris.view
         Rectangle rect2;
         Rectangle rect3;
         Rectangle rect4;
+        Random randomShape = new Random();
 
         public Tetris()
         {
@@ -36,30 +38,28 @@ namespace projet_tetris.view
 
             int j = 0;
             List<ShapePlayer> shapes = new List<ShapePlayer>();
-            /*do
-            {
-                shapes.Add(tetrisContext.shape[0]);
-                
-                Random randomShape = new Random();
-                tetrisContext.shape = tetrisContext.shape.OrderBy(x => randomShape.Next()).ToArray();
-                currentShape = shapes[shapes.Count-1];
-                System.Threading.Thread.Sleep(100);
-                j++;
-
-            } while (currentShape.isPlaced == false);*/
 
             shapes.Add(tetrisContext.shape[0]);
 
             Random randomShape = new Random();
             tetrisContext.shape = tetrisContext.shape.OrderBy(x => randomShape.Next()).ToArray();
             currentShape = shapes[shapes.Count - 1];
-            System.Threading.Thread.Sleep(100);
 
-            /*while(currentShape.isPlaced == false)
+/*            do
             {
+               // shapes.Add(tetrisContext.shape[0]);
+                
+
+                /*tetrisContext.shape = tetrisContext.shape.OrderBy(x => randomShape.Next()).ToArray();
+                currentShape = shapes[shapes.Count-1];
+                Thread t = new Thread(new ThreadStart(autoFalling));
+                t.Start();
+                t.Join();
+                j++;
+
+            } while (currentShape.isPlaced == false);*/
 
 
-            }*/
             rect1 = new Rectangle();
             rect1.Fill = currentShape.color;
             Grid.SetColumn(rect1, currentShape.square1[1]);
@@ -162,8 +162,9 @@ namespace projet_tetris.view
 
         public bool checkIsPlaced(ShapePlayer shape)
         {
-            if (shape.isPlaced)
+            if (shape.square1[0] == 20 || shape.square2[0] == 20 || shape.square3[0] == 20 || shape.square4[0] == 20)
             {
+                shape.isPlaced = true;
                 return true;
             }
             return false;
@@ -482,6 +483,12 @@ namespace projet_tetris.view
                 }
             }
         }
+
+        public  void autoFalling()
+        {
+            moveShape(currentShape, "down", 0);
+        }
+
     }
 
 
