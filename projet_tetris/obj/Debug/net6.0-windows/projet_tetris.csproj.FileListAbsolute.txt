@@ -68,3 +68,12 @@ C:\Users\ftoot\Documents\Devops\.NET\Tetris2\projet_tetris\bin\Debug\net6.0-wind
 C:\Users\ftoot\Documents\Devops\.NET\Tetris2\projet_tetris\bin\Debug\net6.0-windows\WpfAnimatedGif.dll
 C:\Users\ftoot\Documents\Devops\.NET\Tetris2\projet_tetris\bin\Debug\net6.0-windows\XamlAnimatedGif.dll
 C:\Users\ftoot\Documents\Devops\.NET\Tetris2\projet_tetris\obj\Debug\net6.0-windows\projet_tetris.csproj.CopyComplete
+C:\Users\ftoot\Documents\Devops\.NET\Tetris2\projet_tetris\bin\Debug\net6.0-windows\view\background.gif
+C:\Users\ftoot\Documents\Devops\.NET\Tetris2\projet_tetris\obj\Debug\net6.0-windows\projet_tetris_Content.g.cs
+C:\Users\ftoot\Documents\Devops\.NET\Tetris2\projet_tetris\bin\Debug\net6.0-windows\projet_tetris.dll.config
+C:\Users\ftoot\Documents\Devops\.NET\Tetris2\projet_tetris\bin\Debug\net6.0-windows\CsvHelper.dll
+C:\Users\ftoot\Documents\Devops\.NET\Tetris2\projet_tetris\bin\Debug\net6.0-windows\System.Data.OleDb.dll
+C:\Users\ftoot\Documents\Devops\.NET\Tetris2\projet_tetris\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\Users\ftoot\Documents\Devops\.NET\Tetris2\projet_tetris\obj\Debug\net6.0-windows\view\Classements.g.cs
+C:\Users\ftoot\Documents\Devops\.NET\Tetris2\projet_tetris\obj\Debug\net6.0-windows\view\Classements.baml
+C:\Users\ftoot\Documents\Devops\.NET\Tetris2\projet_tetris\bin\Debug\net6.0-windows\img\first.png

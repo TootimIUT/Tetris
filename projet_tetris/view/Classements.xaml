@@ -1,0 +1,28 @@
+﻿<Window x:Class="projet_tetris.view.Classements"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:local="clr-namespace:projet_tetris.view"
+        Title="Classements" Height="450" Width="800" Icon="/view/tetris.png">
+
+    <Window.Background >
+        <VisualBrush>
+            <VisualBrush.Visual>
+                <Image gif:ImageBehavior.AnimatedSource="/view/background.gif"
+
+                   gif:ImageBehavior.AutoStart="True"
+                   gif:ImageBehavior.RepeatBehavior="1"/>
+            </VisualBrush.Visual>
+        </VisualBrush>
+    </Window.Background>
+
+    <Grid>
+        <TextBlock Height="31" HorizontalAlignment="Center" Margin="0,10,0,0" x:Name="ClassementHeading" VerticalAlignment="Top" FontSize="24" FontStretch="ExtraCondensed" Width="368" Foreground="White" FontWeight="Normal" FontFamily="Showcard Gothic"><Run Text="Liste des meillurs joueurs"/></TextBlock>
+        <TextBlock Height="280" HorizontalAlignment="Center" Margin="0,65,0,0" x:Name="BestPlayersTextArea" VerticalAlignment="Top" FontSize="20" FontStretch="ExtraCondensed" Width="308" Foreground="White"><Run Text=""/></TextBlock>
+        <Image Margin="30,0,605,268" Source="/img/first.png" Stretch="Fill"/>
+        <Image Margin="604,0,30,268" Source="/img/first.png" Stretch="Fill"/>
+
+    </Grid>
+</Window>

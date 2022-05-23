@@ -14,8 +14,9 @@ using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
-
-using Oracle.ManagedDataAccess.Client;
+using projet_tetris.view;
+using System.IO;
+using System.Data.OleDb;
 
 namespace projet_tetris.model
 {
@@ -27,33 +28,34 @@ namespace projet_tetris.model
         public Login()
         {
             InitializeComponent();
-            /*using (OracleConnection oc = new OracleConnection())
-            {
-                
-                oc.ConnectionString = "User ID=USER1; Password=PASS2; Data Source=DS_TEST;";
-                oc.Open();
-
-                //string sql = "SELECT COL_NO, COL_NAME FROM EMP ORDER BY 1";
-
-                OracleDataAdapter oda = new OracleDataAdapter(sql, oc);
-                DataTable dt = new DataTable();
-                oda.Fill(dt);
-
-                foreach (DataRow dr in dt.Rows)
-                {
-                    Console.WriteLine(String.Format("{0} : {1}", dr["COL_NO"], dr["COL_NAME"]));
-                }
-
-                ////Dapperテスト
-                //oc.Query("SELECT COL_NO, COL_NAME FROM EMP ORDER BY 1")
-                //  .ToList()
-                //  .ForEach(r => Console.WriteLine(String.Format("{0} : {1}", r.COL_NO, r.COL_NAME)));
-            }*/
         }
+
         Registration registration = new Registration();
-        private void button1_Click(object sender, RoutedEventArgs e)
+        MainWindow mainWindow = new MainWindow();
+        Tetris tetris = new Tetris();
+
+        private void Login_Click(object sender, RoutedEventArgs e)
         {
-            if (textBoxEmail.Text.Length == 0)
+            
+
+            String filePath = "../../../data/tetrisDb.accdb";
+            OleDbConnection connection = new OleDbConnection();
+            connection.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source =" + filePath;
+            OleDbCommand command = connection.CreateCommand();
+            command.CommandText = "select Pwd from players where Mail = @mail";
+            command.Parameters.AddWithValue("mail", textBoxEmail.Text);
+            String password = "";
+            connection.Open();
+            OleDbDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                password = reader.GetString(0);
+            }
+
+            connection.Close();
+
+            if (String.IsNullOrEmpty(textBoxEmail.Text))
             {
                 errormessage.Text = "Entrer un mail.";
                 textBoxEmail.Focus();
@@ -66,31 +68,17 @@ namespace projet_tetris.model
             }
             else
             {
-                string email = textBoxEmail.Text;
-                string password = passwordBox1.Password;
 
-                // Connexion BDD  
-               /* SqlConnection con = new SqlConnection(@"Data Source=USER;Initial Catalog=admin;Integrated Security=True");  
-                con.Open();
-
-                //Verification Compte existant
-                SqlCommand cmd = new SqlCommand("Select * from Registration where Email='" + email + "'  and password='" + password + "'", con);
-                cmd.CommandType = CommandType.Text;
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                adapter.SelectCommand = cmd;
-                DataSet dataSet = new DataSet();
-                adapter.Fill(dataSet);
-                if (dataSet.Tables[0].Rows.Count > 0)
-                {  
-                    MainWindow.Show();
+                if (password.ToString().Equals(passwordBox1.Password.ToString()))
+                {
+                    tetris.Show();
+                    tetris.Mail = textBoxEmail.Text;
                     Close();
                 }
                 else
                 {
                     errormessage.Text = "Le mail ou le mot de passe est incorrect.";
                 }
-                //Fermeture connexion BDD
-                con.Close();*/
             }
         }
         private void Register_Click(object sender, RoutedEventArgs e)

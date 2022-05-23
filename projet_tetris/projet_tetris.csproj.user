@@ -8,7 +8,10 @@
     <Compile Update="view\Registration.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="view\tetris.xaml.cs">
+    <Compile Update="view\Tetris.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="view\Classements.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -20,6 +23,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="view\Tetris.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="view\Classements.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

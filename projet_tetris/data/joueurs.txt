@@ -1,0 +1,5 @@
+﻿Id,Name,Surname,Password,Mail
+1,Jean,Jean,oui,oui@oui.fr
+2,Michel,Jean,oui,non@oui.fr
+3,Teddy,Michel,oui,ptetre@oui.fr
+4,Poulin,Teddy,oui,vie@oui.fr

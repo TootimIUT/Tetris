@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
     xmlns:gif="http://wpfanimatedgif.codeplex.com"
     Title="Registration" Height="363" Width="528" Icon="/view/tetris.png" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Foreground="White" BorderBrush="Black">
-    <Window.Background>
+
+    <Window.Background >
         <VisualBrush>
             <VisualBrush.Visual>
                 <Image gif:ImageBehavior.AnimatedSource="/view/background.gif"
@@ -14,9 +15,9 @@
         </VisualBrush>
     </Window.Background>
 
-
     <Grid Width="525" Margin="2,0,1,17">
-        <TextBlock Height="23" HorizontalAlignment="Left" Margin="17,17,0,0" x:Name="textBlockHeading" VerticalAlignment="Top" Width="110"  FontSize="17" FontStretch="ExtraCondensed" Foreground="White"><Run Language="fr-fr" Text="S'inscrire"/><LineBreak/><Run Language="fr-fr"/></TextBlock>
+
+        <TextBlock Height="34" HorizontalAlignment="Left" Margin="39,17,0,0" x:Name="textBlockHeading" VerticalAlignment="Top" Width="138"  FontSize="24" FontStretch="ExtraCondensed" Foreground="White" FontFamily="Showcard Gothic"><Run Language="fr-fr" Text="S'inscrire : "/><LineBreak/><Run Language="fr-fr"/></TextBlock>
         <Grid Margin="17,0,43,1" Height="264" VerticalAlignment="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition Height="252*" />
@@ -30,8 +31,8 @@
             <TextBox Height="23" HorizontalAlignment="Left" Margin="183,55,0,0" Name="textBoxEmail" VerticalAlignment="Top" Width="222" />
             <PasswordBox Height="23" HorizontalAlignment="Left" Margin="183,87,0,0" Name="passwordBox1" VerticalAlignment="Top" Width="222" />
             <PasswordBox Height="22" HorizontalAlignment="Left" Margin="183,0,0,0" Name="passwordBoxConfirm" VerticalAlignment="Center" Width="222" />
-            <Button Content="S'inscrire" Height="23" HorizontalAlignment="Left" Margin="304,156,0,0" Name="Submit" VerticalAlignment="Top" Width="101" Click="Submit_Click" Background="#444490" Foreground="White" />
-            <Button Content="Se connecter" Height="23" HorizontalAlignment="Center" Margin="0,156,0,0" Name="button3" VerticalAlignment="Top" Width="101" Click="Login_Click" Background="#444490" Foreground="White" />
+            <Button Content="S'inscrire" Height="23" HorizontalAlignment="Left" Margin="304,156,0,0" Name="Submit_Button" VerticalAlignment="Top" Width="101" Click="Submit_Click" Background="#444490" Foreground="White" />
+            <Button Content="Se connecter" Height="23" HorizontalAlignment="Center" Margin="0,156,0,0" Name="Login_Button" VerticalAlignment="Top" Width="101" Click="Login_Click" Background="#444490" Foreground="White" />
 
         </Grid>
     </Grid>
