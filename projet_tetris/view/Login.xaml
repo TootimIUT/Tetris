@@ -9,15 +9,15 @@
         Title="Login" Height="324" Width="525" Icon="/view/tetris.png" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,0,80">
 
-        <Grid.Background>
-            <VisualBrush>
+        <!--<Grid.Background>
+             <VisualBrush>
                 <VisualBrush.Visual>
-                    <Image gif:ImageBehavior.AnimatedSource="background.gif"
+                    <Image gif:ImageBehavior.AnimatedSource="/view/background.gif"
                    gif:ImageBehavior.AutoStart="True"
                    gif:ImageBehavior.RepeatBehavior="1"/>
                 </VisualBrush.Visual>
             </VisualBrush>
-        </Grid.Background>
+        </Grid.Background>-->
 
 
 

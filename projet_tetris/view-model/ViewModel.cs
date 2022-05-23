@@ -12,11 +12,11 @@ namespace projet_tetris.view_model
     class ViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
-        public ShapePlayer[] shape { get; set; }
+        public string[] shape { get; set; }
 
         public ViewModel()
         {
-            shape = new ShapePlayer[] { new JShape(), new ZShape(), new LShape(),new TShape(), new StickShape(),  new SShape(), new OShape() };
+            shape = new string[] {"JShape", "ZShape", "LShape", "TShape", "StickShape", "SShape", "OShape"};
 
         }
 

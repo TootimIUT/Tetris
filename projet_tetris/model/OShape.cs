@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +17,11 @@ namespace projet_tetris.model
             color = Brushes.Yellow;
             isPlaced = false;
             state = 0;
+
+        }
+
+        public override void rotateShape()
+        {
 
         }
     }

@@ -29,59 +29,45 @@ namespace projet_tetris.view
         Rectangle rect3;
         Rectangle rect4;
         Random randomShape = new Random();
+        List<ShapePlayer> shapes = new List<ShapePlayer>();
+        ViewModel tetrisContext;
+
+        int[,] board = {
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+                        };
 
         public Tetris()
         {
             InitializeComponent();
             this.DataContext = new ViewModel();
-            ViewModel tetrisContext = (ViewModel)this.DataContext;
+            tetrisContext = (ViewModel)this.DataContext;
 
-            int j = 0;
-            List<ShapePlayer> shapes = new List<ShapePlayer>();
-
-            shapes.Add(tetrisContext.shape[0]);
-
-            Random randomShape = new Random();
-            tetrisContext.shape = tetrisContext.shape.OrderBy(x => randomShape.Next()).ToArray();
-            currentShape = shapes[shapes.Count - 1];
-
-/*            do
-            {
-               // shapes.Add(tetrisContext.shape[0]);
-                
-
-                /*tetrisContext.shape = tetrisContext.shape.OrderBy(x => randomShape.Next()).ToArray();
-                currentShape = shapes[shapes.Count-1];
-                Thread t = new Thread(new ThreadStart(autoFalling));
+            changeShape();
+            
+                Thread t = new Thread(autoFalling);
                 t.Start();
-                t.Join();
-                j++;
-
-            } while (currentShape.isPlaced == false);*/
+            
 
 
-            rect1 = new Rectangle();
-            rect1.Fill = currentShape.color;
-            Grid.SetColumn(rect1, currentShape.square1[1]);
-            Grid.SetRow(rect1, currentShape.square1[0]);
-            rect2 = new Rectangle();
-            rect2.Fill = currentShape.color;
-            Grid.SetColumn(rect2, currentShape.square2[1]);
-            Grid.SetRow(rect2, currentShape.square2[0]);
-            rect3 = new Rectangle();
-            rect3.Fill = currentShape.color;
-            Grid.SetColumn(rect3, currentShape.square3[1]);
-            Grid.SetRow(rect3, currentShape.square3[0]);
-            rect4 = new Rectangle();
-            rect4.Fill = currentShape.color;
-            Grid.SetColumn(rect4, currentShape.square4[1]);
-            Grid.SetRow(rect4, currentShape.square4[0]);
-
-
-            tetrisGrid.Children.Add(rect1);
-            tetrisGrid.Children.Add(rect2);
-            tetrisGrid.Children.Add(rect3);
-            tetrisGrid.Children.Add(rect4);
 
         }
 
@@ -92,7 +78,6 @@ namespace projet_tetris.view
 
         private void moveShape(object sender, KeyEventArgs e)
         {
-            
             if (e.Key == Key.Left)
             {
                 moveShape(currentShape, "left", 1);
@@ -110,17 +95,7 @@ namespace projet_tetris.view
                 moveShape(currentShape, "up", 0);
             }
 
-            Grid.SetColumn(rect1, currentShape.square1[1]);
-            Grid.SetRow(rect1, currentShape.square1[0]);
 
-            Grid.SetColumn(rect2, currentShape.square2[1]);
-            Grid.SetRow(rect2, currentShape.square2[0]);
-
-            Grid.SetColumn(rect3, currentShape.square3[1]);
-            Grid.SetRow(rect3, currentShape.square3[0]);
-
-            Grid.SetColumn(rect4, currentShape.square4[1]);
-            Grid.SetRow(rect4, currentShape.square4[0]);
         }
 
         public void moveShape(ShapePlayer shape, string move, int coordType)
@@ -135,6 +110,7 @@ namespace projet_tetris.view
                         shape.square3[coordType] = shape.square3[coordType] - 1;
                         shape.square4[coordType] = shape.square4[coordType] - 1;
                     }
+
                     break;
                 case "right":
                     if (shape.square1[coordType] + 1 < 10 && shape.square2[coordType] + 1 < 10 && shape.square3[coordType] + 1 < 10 && shape.square4[coordType] + 1 < 10)
@@ -146,7 +122,15 @@ namespace projet_tetris.view
                     }
                     break;
                 case "down":
-                    if (shape.square1[coordType] + 1 < 20 && shape.square2[coordType] + 1 < 20 && shape.square3[coordType] + 1 < 20 && shape.square4[coordType] + 1 < 20)
+                    if (checkIsPlaced(shape))
+                    {
+                        board[shape.square1[0], shape.square1[1]] = 1;
+                        board[shape.square2[0], shape.square2[1]] = 1;
+                        board[shape.square3[0], shape.square3[1]] = 1;
+                        board[shape.square4[0], shape.square4[1]] = 1;
+                        changeShape();
+                    }
+                    else
                     {
                         shape.square1[coordType] = shape.square1[coordType] + 1;
                         shape.square2[coordType] = shape.square2[coordType] + 1;
@@ -158,11 +142,28 @@ namespace projet_tetris.view
                     rotateShape(shape);
                     break;
             }
+
+            Grid.SetColumn(rect1, currentShape.square1[1]);
+            Grid.SetRow(rect1, currentShape.square1[0]);
+
+            Grid.SetColumn(rect2, currentShape.square2[1]);
+            Grid.SetRow(rect2, currentShape.square2[0]);
+
+            Grid.SetColumn(rect3, currentShape.square3[1]);
+            Grid.SetRow(rect3, currentShape.square3[0]);
+
+            Grid.SetColumn(rect4, currentShape.square4[1]);
+            Grid.SetRow(rect4, currentShape.square4[0]);
         }
 
         public bool checkIsPlaced(ShapePlayer shape)
         {
-            if (shape.square1[0] == 20 || shape.square2[0] == 20 || shape.square3[0] == 20 || shape.square4[0] == 20)
+            if (shape.square1[0] == 19 || shape.square2[0] == 19 || shape.square3[0] == 19 || shape.square4[0] == 19)
+            {
+                shape.isPlaced = true;
+                return true;
+            }
+            else if (board[shape.square1[0] + 1, shape.square1[1]] == 1 || board[shape.square2[0] + 1, shape.square2[1]] == 1 || board[shape.square3[0] + 1, shape.square3[1]] == 1 || board[shape.square4[0] + 1, shape.square4[1]] == 1)
             {
                 shape.isPlaced = true;
                 return true;
@@ -170,328 +171,141 @@ namespace projet_tetris.view
             return false;
         }
 
-        public void changeShape(ShapePlayer shape)
+        public void changeShape()
         {
 
+            generateShape();
+            MessageBox.Show("Carré 1 : " + currentShape.square1[0] + " | " + currentShape.square1[1]
+                + "\n Carré 2 " + currentShape.square2[0] + " | " + currentShape.square2[1]
+                + "\n Carré 3 :" + currentShape.square3[0] + " | " + currentShape.square3[1]
+                + "\n Carré 4 " + currentShape.square4[0] + " | " + currentShape.square4[1]);
+
+            rect1 = new Rectangle();
+            rect1.Fill = currentShape.color;
+            Grid.SetColumn(rect1, currentShape.square1[1]);
+            Grid.SetRow(rect1, currentShape.square1[0]);
+
+            rect2 = new Rectangle();
+            rect2.Fill = currentShape.color;
+            Grid.SetColumn(rect2, currentShape.square2[1]);
+            Grid.SetRow(rect2, currentShape.square2[0]);
+
+            rect3 = new Rectangle();
+            rect3.Fill = currentShape.color;
+            Grid.SetColumn(rect3, currentShape.square3[1]);
+            Grid.SetRow(rect3, currentShape.square3[0]);
+
+            rect4 = new Rectangle();
+            rect4.Fill = currentShape.color;
+            Grid.SetColumn(rect4, currentShape.square4[1]);
+            Grid.SetRow(rect4, currentShape.square4[0]);
+
+            tetrisGrid.Children.Add(rect1);
+            tetrisGrid.Children.Add(rect2);
+            tetrisGrid.Children.Add(rect3);
+            tetrisGrid.Children.Add(rect4);
         }
 
         public void rotateShape(ShapePlayer shape)
         {
-            Type t = shape.GetType();
-            if (t.Equals(typeof(JShape)))
-            {
-                switch (shape.state)
-                {
-                    case 0:
-                        if(shape.square2[1] < 9)
-                        {
-                            shape.square1[0] += 1;
-                            shape.square1[1] += 1;
-                            shape.square3[0]-=1;
-                            shape.square3[1]-=1;
-                            shape.square4[0] -= 2;
-                            shape.state = 1;
-                        }
-                        break;
-
-                    case 1:
-                        if(shape.square2[0] < 19)
-                        {
-                            shape.square1[0] += 1;
-                            shape.square1[1] -= 1;
-                            shape.square3[0] -= 1;
-                            shape.square3[1] += 1;
-                            shape.square4[1] += 2; 
-                            shape.state = 2;
-                        }
-                        break;
-
-                    case 2:
-                        if(shape.square2[1] > 0)
-                        {
-                            shape.square1[0] -= 1;
-                            shape.square1[1] -= 1;
-                            shape.square3[0] += 1;
-                            shape.square3[1] += 1;
-                            shape.square4[0] += 2;
-                            shape.state = 3;
-                        }
-                        break;
-                    case 3:
-                       
-                            shape.square1[0] -= 1;
-                            shape.square1[1] += 1;
-                            shape.square3[0] += 1;
-                            shape.square3[1] -= 1;
-                            shape.square4[1] -= 2;
-                            shape.state = 0;
-
-                        break;
-
-
-                }
-            }
-            if (t.Equals(typeof(LShape)))
-            {
-                switch (shape.state)
-                {
-                    case 0:
-                        if (shape.square2[1] > 0 && shape.square1[0] < 20 && shape.square1[1] < 10)
-                        {
-                            shape.square1[0] += 1;
-                            shape.square1[1] -= 1;
-
-                            shape.square3[0] -= 1;
-                            shape.square3[1] += 1;
-
-                            shape.square4[0] -= 2;
-                            shape.state = 1;
-                        }
-                        break;
-
-                    case 1:
-                        if (shape.square2[0] < 19)
-                        {
-                            shape.square1[0] += 1;
-                            shape.square1[1] += 1;
-                        
-                            shape.square3[0] -= 1;
-                            shape.square3[1] -= 1;
-                        
-                            shape.square4[1] -= 2;
-                            shape.state = 2;
-                        }
-                        
-                        break;
-
-                    case 2:
-                        if (shape.square2[1] < 9)
-                        {
-                            shape.square1[0] -= 1;
-                            shape.square1[1] += 1;
-                        
-                        
-                            shape.square3[0] += 1;
-                            shape.square3[1] -= 1;
-                        
-                            shape.square4[0] += 2;
-                            shape.state = 3;
-                        
-                        }
-                        break;
-                    case 3:
-                        if (shape.square2[0] > 0)
-                        {
-                            shape.square1[0] -= 1;
-                            shape.square1[1] -= 1;
-                        
-                            shape.square3[0] += 1;
-                            shape.square3[1] += 1;
-                        
-                            shape.square4[1] += 2;
-                            shape.state = 0;
-                        }
-                        break;
-
-
-                }
-            }
-            if (t.Equals(typeof(SShape)))
-            {
-                switch (shape.state)
-                {
-                    case 0:
-                        if(shape.square1[0] > 0)
-                        {
-                        shape.square1[0] -=1;
-                        shape.square1[1] +=1;
-
-                        shape.square3[0] -= 1;  
-                        shape.square3[1] -=1;
-
-                        shape.square4[1] -=2;
-
-                        shape.state = 1;
-
-                        }
-
-
-                        break;
-
-                    case 1:
-                        if(shape.square4[1] < 8)
-                        {
-                        shape.square1[0] +=1;
-                        shape.square1[1] -=1;
-
-                        shape.square3[0] += 1;
-                        shape.square3[1] += 1;
-
-                        shape.square4[1] += 2;
-
-                        shape.state = 0;
-                        }
-                    break;
-
-                }
-
-            }
-            if (t.Equals(typeof(ZShape)))
-            {
-                switch (shape.state)
-                {
-                    case 0:
-                        if (shape.square1[0] > 0)
-                        {
-                            shape.square1[0] -= 1;
-                            shape.square1[1] -= 1;
-
-                            shape.square3[0] -= 1;
-                            shape.square3[1] += 1;
-
-                            shape.square4[1] += 2;
-                            shape.state = 1;
-                        }
-
-
-                        break;
-
-                    case 1:
-                        
-                        if(shape.square2[1] > 0)
-                        {
-                            shape.square1[0] += 1;
-                            shape.square1[1] += 1;
-
-                            shape.square3[0] += 1;
-                            shape.square3[1] -= 1;
-
-                            shape.square4[1] -= 2;
-
-                            shape.state = 0;
-                        }
-                        
-                        break;
-
-                }
-
-            }
-
-            if (t.Equals(typeof(StickShape)))
-            {
-                switch (shape.state)
-                {
-                    case 0:
-                        if(shape.square1[0] > 0 && shape.square4[0] < 18)
-                        {
-                            shape.square1[0] -= 1;
-                            shape.square1[1] += 1;
-
-                            shape.square3[0] += 1;
-                            shape.square3[1] -= 1;
-
-                            shape.square4[0] +=2;
-                            shape.square4[1] -=2;
-
-                            shape.state = 1;
-                        }
-                        break;
-
-                    case 1:
-                        if(shape.square1[1] > 0 && shape.square4[1] < 8)
-                        {
-                            shape.square1[0] += 1;
-                            shape.square1[1] -= 1;
-
-                            shape.square3[0] -= 1;
-                            shape.square3[1] += 1;
-
-                            shape.square4[0] -= 2;
-                            shape.square4[1] += 2;
-
-                            shape.state = 0;
-                        }
-                        break;
-                }
-            }
-            if (t.Equals(typeof(TShape)))
-            {
-                switch (shape.state)
-                {
-                    case 0:
-                        if(shape.square2[0] > 0)
-                        {
-                            shape.square1[0] -= 1;
-                            shape.square1[1] += 1;
-
-                            shape.square3[0] += 1;
-                            shape.square3[1] -= 1;
-
-                            shape.square4[0] -= 1;
-                            shape.square4[1] -= 1;
-
-                            shape.state = 1;
-                        }
-                        break;
-
-                    case 1:
-                        if (shape.square2[1] < 9)
-                        {
-                            shape.square1[0] += 1;
-                            shape.square1[1] += 1;
-
-                            shape.square3[0] -= 1;
-                            shape.square3[1] -= 1;
-
-                            shape.square4[0] -= 1;
-                            shape.square4[1] += 1;
-
-                            shape.state = 2;
-                        }
-                        break;
-
-                    case 2:
-                        if (shape.square2[0] < 19 )
-                        { 
-                            shape.square1[0] += 1;
-                            shape.square1[1] -= 1;
-
-                            shape.square3[0] -= 1;
-                            shape.square3[1] += 1;
-
-                            shape.square4[0] += 1;
-                            shape.square4[1] += 1;
-
-                            shape.state = 3;
-                        }
-                            break;
-                    case 3:
-                        if (shape.square2[1] > 0)
-                        {
-                            shape.square1[0] -= 1;
-                            shape.square1[1] -= 1;
-
-                            shape.square3[0] += 1;
-                            shape.square3[1] += 1;
-
-                            shape.square4[0] += 1;
-                            shape.square4[1] -= 1;
-
-                            shape.state = 0;
-                        }
-                        break;
-                }
-            }
+            shape.rotateShape();
         }
 
         public  void autoFalling()
         {
-            Timer t = new Timer();
-            moveShape(currentShape, "down", 0);
+            do
+            {
+                synchronize(() =>
+                {
+                    checkCollide(currentShape);
+                    moveShape(currentShape, "down", 0);
+
+                });
+                Thread.Sleep(1000);
+            } while (currentShape.isPlaced == false);
         }
 
+        private static void synchronize(Action a)
+        {
+            Application app = Application.Current;
+            if (app != null && app.Dispatcher != null)
+            {
+                Application.Current.Dispatcher.Invoke(a);
+            }
+        }
+
+        private void checkCollide(ShapePlayer shape)
+        {
+
+            if (checkIsPlaced(shape))
+            {
+                board[shape.square1[0], shape.square1[1]] = 1;
+                board[shape.square2[0], shape.square2[1]] = 1;
+                board[shape.square3[0], shape.square3[1]] = 1;
+                board[shape.square4[0], shape.square4[1]] = 1;
+                changeShape();
+            }
+            
+        }
+
+        public void generateShape()
+        {
+            int entier = randomShape.Next(7);
+            MessageBox.Show("Forme : " + entier);
+            string shapeStr = tetrisContext.shape[entier];
+            ShapePlayer newShape = null;
+            switch (shapeStr) 
+            {
+                case "JShape":
+                    newShape = new JShape();
+                    break;
+
+                case "LShape":
+                    newShape = new LShape();
+                    break;
+
+                case "OShape":
+                    newShape = new OShape();
+                    break;
+
+                case "SShape":
+                    newShape = new SShape();
+                    break;
+
+                case "StickShape":
+                    newShape = new StickShape();
+                    break;
+
+                case "TShape":
+                    newShape = new TShape();
+                    break;
+
+                case "ZShape":
+                    newShape = new ZShape();
+                    break;
+            }
+
+            shapes.Add(newShape);
+
+            currentShape = shapes[shapes.Count - 1];
+        }
+
+        private void Classement_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Profil_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Restart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 
-    }
+}
 

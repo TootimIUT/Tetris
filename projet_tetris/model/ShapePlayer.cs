@@ -20,6 +20,8 @@ namespace projet_tetris.model
         public bool isPlaced { get; set; }
         public int state { get; set; }
 
-    }
+        public abstract void rotateShape();
 
+    }
 }
+

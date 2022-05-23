@@ -19,5 +19,74 @@ namespace projet_tetris.model
             isPlaced = false;
             state = 0;
         }
+
+        public override void rotateShape()
+        {
+            switch (this.state)
+            {
+                case 0:
+                    if (this.square2[0] > 0)
+                    {
+                        this.square1[0] -= 1;
+                        this.square1[1] += 1;
+
+                        this.square3[0] += 1;
+                        this.square3[1] -= 1;
+
+                        this.square4[0] -= 1;
+                        this.square4[1] -= 1;
+
+                        this.state = 1;
+                    }
+                    break;
+
+                case 1:
+                    if (this.square2[1] < 9)
+                    {
+                        this.square1[0] += 1;
+                        this.square1[1] += 1;
+
+                        this.square3[0] -= 1;
+                        this.square3[1] -= 1;
+
+                        this.square4[0] -= 1;
+                        this.square4[1] += 1;
+
+                        this.state = 2;
+                    }
+                    break;
+
+                case 2:
+                    if (this.square2[0] < 19)
+                    {
+                        this.square1[0] += 1;
+                        this.square1[1] -= 1;
+
+                        this.square3[0] -= 1;
+                        this.square3[1] += 1;
+
+                        this.square4[0] += 1;
+                        this.square4[1] += 1;
+
+                        this.state = 3;
+                    }
+                    break;
+                case 3:
+                    if (this.square2[1] > 0)
+                    {
+                        this.square1[0] -= 1;
+                        this.square1[1] -= 1;
+
+                        this.square3[0] += 1;
+                        this.square3[1] += 1;
+
+                        this.square4[0] += 1;
+                        this.square4[1] -= 1;
+
+                        this.state = 0;
+                    }
+                    break;
+            }
+        }
     }
 }
