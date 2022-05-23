@@ -19,12 +19,12 @@ namespace projet_tetris.model
 
         }
 
-        public override void rotateShape()
+        public override void rotateShape(int[,] board)
         {
             switch (this.state)
             {
                 case 0:
-                    if (this.square2[1] < 9)
+                    if (this.square2[1] < 9 && board[this.square1[0]+1, this.square1[1]+1] == 0 && board[this.square3[0] - 1, this.square3[1] - 1] == 0 && board[this.square4[0] - 2, this.square4[1]] == 0)
                     {
                         this.square1[0] += 1;
                         this.square1[1] += 1;
@@ -36,7 +36,7 @@ namespace projet_tetris.model
                     break;
 
                 case 1:
-                    if (this.square2[0] < 19)
+                    if (this.square2[0] < 19 && board[this.square1[0] + 1, this.square1[1] - 1] == 0 && board[this.square3[0] - 1, this.square3[1] + 1] == 0 && board[this.square4[0], this.square4[1] + 2] == 0)
                     {
                         this.square1[0] += 1;
                         this.square1[1] -= 1;
@@ -48,7 +48,7 @@ namespace projet_tetris.model
                     break;
 
                 case 2:
-                    if (this.square2[1] > 0)
+                    if (this.square2[1] > 0 && board[this.square1[0] - 1, this.square1[1] - 1] == 0 && board[this.square3[0] + 1, this.square3[1] + 1] == 0 && board[this.square4[0] + 2, this.square4[1]] == 0)
                     {
                         this.square1[0] -= 1;
                         this.square1[1] -= 1;
@@ -59,13 +59,15 @@ namespace projet_tetris.model
                     }
                     break;
                 case 3:
-
-                    this.square1[0] -= 1;
-                    this.square1[1] += 1;
-                    this.square3[0] += 1;
-                    this.square3[1] -= 1;
-                    this.square4[1] -= 2;
-                    this.state = 0;
+                    if(board[this.square1[0] - 1, this.square1[1] + 1] == 0 && board[this.square3[0] + 1, this.square3[1] - 1] == 0 && board[this.square4[0], this.square4[1] - 2] == 0)
+                    {
+                        this.square1[0] -= 1;
+                        this.square1[1] += 1;
+                        this.square3[0] += 1;
+                        this.square3[1] -= 1;
+                        this.square4[1] -= 2;
+                        this.state = 0;
+                    }
 
                     break;
 

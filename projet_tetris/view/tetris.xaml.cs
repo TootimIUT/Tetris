@@ -80,45 +80,56 @@ namespace projet_tetris.view
         {
             if (e.Key == Key.Left)
             {
-                moveShape(currentShape, "left", 1);
+                if(currentShape.square1[1] - 1 > -1 && currentShape.square2[1] - 1 > -1 && currentShape.square3[1] - 1 > -1 && currentShape.square4[1] - 1 > -1)
+                {
+                    moveShape(currentShape, "left");
+                }
             }
             if (e.Key == Key.Right)
             {
-                moveShape(currentShape, "right", 1);
+                if (currentShape.square1[1] + 1 < 10 && currentShape.square2[1] + 1 < 10 && currentShape.square3[1] + 1 < 10 && currentShape.square4[1] + 1 < 10)
+                {
+                    moveShape(currentShape, "right");
+                }
             }
             if (e.Key == Key.Down)
             {
-                moveShape(currentShape, "down", 0);
+                if(currentShape.square1[0] < 19 && currentShape.square2[0] < 19 && currentShape.square3[0] < 19 && currentShape.square4[0] < 19 && board[currentShape.square1[0] + 1, currentShape.square1[1]] == 0 && board[currentShape.square2[0] + 1, currentShape.square2[1]] == 0 && board[currentShape.square3[0] + 1, currentShape.square3[1]] == 0 && board[currentShape.square4[0] + 1, currentShape.square4[1]] == 0)
+                {
+                    moveShape(currentShape, "down");
+                }
+
+                
             }
             if(e.Key == Key.Up)
             {
-                moveShape(currentShape, "up", 0);
+                moveShape(currentShape, "up");
             }
 
 
         }
 
-        public void moveShape(ShapePlayer shape, string move, int coordType)
+        public void moveShape(ShapePlayer shape, string move)
         {
             switch (move)
             {
                 case "left":
-                    if (shape.square1[coordType] - 1 > -1 && shape.square2[coordType] - 1 > -1 && shape.square3[coordType] - 1 > -1 && shape.square4[coordType] - 1 > -1)
+                    if (board[currentShape.square1[0], currentShape.square1[1] - 1] == 0 && board[currentShape.square2[0], currentShape.square2[1] - 1] == 0 && board[currentShape.square3[0], currentShape.square3[1] - 1] == 0 && board[currentShape.square4[0], currentShape.square4[1] - 1] == 0)
                     {
-                        shape.square1[coordType] = shape.square1[coordType] - 1;
-                        shape.square2[coordType] = shape.square2[coordType] - 1;
-                        shape.square3[coordType] = shape.square3[coordType] - 1;
-                        shape.square4[coordType] = shape.square4[coordType] - 1;
+                        shape.square1[1] = shape.square1[1] - 1;
+                        shape.square2[1] = shape.square2[1] - 1;
+                        shape.square3[1] = shape.square3[1] - 1;
+                        shape.square4[1] = shape.square4[1] - 1;
                     }
 
                     break;
                 case "right":
-                    if (shape.square1[coordType] + 1 < 10 && shape.square2[coordType] + 1 < 10 && shape.square3[coordType] + 1 < 10 && shape.square4[coordType] + 1 < 10)
+                    if (board[currentShape.square1[0], currentShape.square1[1] + 1] == 0 && board[currentShape.square2[0], currentShape.square2[1] + 1] == 0 && board[currentShape.square3[0], currentShape.square3[1] + 1] == 0 && board[currentShape.square4[0], currentShape.square4[1] + 1] == 0)
                     {
-                        shape.square1[coordType] = shape.square1[coordType] + 1;
-                        shape.square2[coordType] = shape.square2[coordType] + 1;
-                        shape.square3[coordType] = shape.square3[coordType] + 1;
-                        shape.square4[coordType] = shape.square4[coordType] + 1;
+                        shape.square1[1] = shape.square1[1] + 1;
+                        shape.square2[1] = shape.square2[1] + 1;
+                        shape.square3[1] = shape.square3[1] + 1;
+                        shape.square4[1] = shape.square4[1] + 1;
                     }
                     break;
                 case "down":
@@ -132,10 +143,10 @@ namespace projet_tetris.view
                     }
                     else
                     {
-                        shape.square1[coordType] = shape.square1[coordType] + 1;
-                        shape.square2[coordType] = shape.square2[coordType] + 1;
-                        shape.square3[coordType] = shape.square3[coordType] + 1;
-                        shape.square4[coordType] = shape.square4[coordType] + 1;
+                        shape.square1[0] = shape.square1[0] + 1;
+                        shape.square2[0] = shape.square2[0] + 1;
+                        shape.square3[0] = shape.square3[0] + 1;
+                        shape.square4[0] = shape.square4[0] + 1;
                     }
                     break;
                 case "up":
@@ -175,10 +186,6 @@ namespace projet_tetris.view
         {
 
             generateShape();
-            MessageBox.Show("Carré 1 : " + currentShape.square1[0] + " | " + currentShape.square1[1]
-                + "\n Carré 2 " + currentShape.square2[0] + " | " + currentShape.square2[1]
-                + "\n Carré 3 :" + currentShape.square3[0] + " | " + currentShape.square3[1]
-                + "\n Carré 4 " + currentShape.square4[0] + " | " + currentShape.square4[1]);
 
             rect1 = new Rectangle();
             rect1.Fill = currentShape.color;
@@ -208,7 +215,7 @@ namespace projet_tetris.view
 
         public void rotateShape(ShapePlayer shape)
         {
-            shape.rotateShape();
+            shape.rotateShape(board);
         }
 
         public  void autoFalling()
@@ -218,7 +225,7 @@ namespace projet_tetris.view
                 synchronize(() =>
                 {
                     checkCollide(currentShape);
-                    moveShape(currentShape, "down", 0);
+                    moveShape(currentShape, "down");
 
                 });
                 Thread.Sleep(1000);

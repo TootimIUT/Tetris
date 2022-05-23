@@ -20,7 +20,7 @@ namespace projet_tetris.model
 
         }
 
-        public override void rotateShape()
+        public override void rotateShape(int[,] board)
         {
 
         }

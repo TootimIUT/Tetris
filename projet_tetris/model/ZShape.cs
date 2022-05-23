@@ -18,7 +18,7 @@ namespace projet_tetris.model
             state = 0;
         }
 
-        public override void rotateShape()
+        public override void rotateShape(int[,] board)
         {
             switch (this.state)
             {
