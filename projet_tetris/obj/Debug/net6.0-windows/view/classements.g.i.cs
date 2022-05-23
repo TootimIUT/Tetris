@@ -70,7 +70,7 @@ namespace projet_tetris.view {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/projet_tetris;V1.0.0.0;component/view/classements.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/projet_tetris;component/view/classements.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\view\Classements.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
