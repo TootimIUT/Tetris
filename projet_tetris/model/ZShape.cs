@@ -23,7 +23,7 @@ namespace projet_tetris.model
             switch (this.state)
             {
                 case 0:
-                    if (this.square1[0] > 0)
+                    if (this.square1[0] > 0 && board[this.square1[0] - 1, this.square1[1] - 1] == 0 && board[this.square3[0] - 1, this.square3[1] + 1] == 0 && board[this.square4[0], this.square4[1] + 2] == 0)
                     {
                         this.square1[0] -= 1;
                         this.square1[1] -= 1;
@@ -40,7 +40,7 @@ namespace projet_tetris.model
 
                 case 1:
 
-                    if (this.square2[1] > 0)
+                    if (this.square2[1] > 0 && board[this.square1[0] + 1, this.square1[1] + 1] == 0 && board[this.square3[0] + 1, this.square3[1] - 1] == 0 && board[this.square4[0], this.square4[1] - 2] == 0)
                     {
                         this.square1[0] += 1;
                         this.square1[1] += 1;

@@ -68,7 +68,7 @@ namespace projet_tetris.model
                     }
                     break;
                 case 3:
-                    if (this.square2[0] > 0 && board[this.square1[0] - 1, this.square1[1] - 1] == 0 && board[this.square3[0] + 1, this.square3[1] + 1] == 0 && board[this.square1[0], this.square1[1] + 2] == 0)
+                    if (this.square2[0] > 0 && board[this.square1[0] - 1, this.square1[1] - 1] == 0 && board[this.square3[0] + 1, this.square3[1] + 1] == 0 && board[this.square4[0], this.square4[1] + 2] == 0)
                     {
                         this.square1[0] -= 1;
                         this.square1[1] -= 1;
