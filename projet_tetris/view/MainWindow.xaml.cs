@@ -25,5 +25,10 @@ namespace projet_tetris
             InitializeComponent();
             
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }
